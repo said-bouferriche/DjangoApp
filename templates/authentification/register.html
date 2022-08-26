@@ -22,7 +22,7 @@
 
                 </div>
                 <div class="invalid-feedback" style="display: none; text-align:center"></div>
-
+                <p class="text-sm text-success usernameSuccessOutput"></p>
                 <div class="invalid-feedback"></div>
                 <div class="form-groupe p-1">
                     <input 
@@ -30,9 +30,11 @@
                     name="email"
                     placeholder="email"
                     class="form-control form-control-sm"
-                    id="emailField"/>
+                    id="emailField" emailfeedbackArea/>
 
                 </div>
+                <div class="emailfeedbackArea invalid-feedback" style="display: none; text-align:center"></div>
+
                 <div class="form-groupe p-1">
                     <input 
                     type="password"
@@ -41,7 +43,7 @@
                     class="form-control form-control-sm"
                     id="passwordField"
                     />
-                    <small class="float-xl-end py-3">SHOW</small>
+                    <small class="float-xl-end py-3 showPasswordToggle">SHOW</small>
                 </div>
                 
                 <input type="submit" value="Register" class="btn btn-block btn-primary form-control"/>
