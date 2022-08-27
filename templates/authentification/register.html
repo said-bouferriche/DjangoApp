@@ -1,70 +1,54 @@
 {% extends 'base-auth.html' %}
-
 {% load static %}
-
-
 {% block content %}
-<div class="row" style="margin-top: 8%;">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-title">
-            <h4 style="text-align: center; padding:20px;">Register for a free account</h4>
-            <div class="card-body">
-            <form action="" method="post">
-                <div class="form-groupe p-1">
-                    <input 
-                    type="text" 
-                    name="username"
-                    placeholder="username" 
-                    class="form-control"
-                    id="usernameField"/>
+    <div class="row" style="margin-top: 8%;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-title">
+                    <h4 style="text-align: center; padding:20px;">Register for a free account</h4>
+                    <div class="card-body">
+                            <form action="{% url 'register'%}" method="post">
+                                {% csrf_token %}
 
+                                {% include 'partials/_messages.html' %}
+                                <div class="form-groupe p-1">
+                                    <input type="text"
+                                           name="username"
+                                           placeholder="username"
+                                           class="form-control"
+                                           id="usernameField"/>
+                                </div>
+                                <div class="invalid-feedback" style="display: none; text-align:center"></div>
+                                <p class="text-sm text-success usernameSuccessOutput"></p>
+                                <div class="invalid-feedback"></div>
+                                <div class="form-groupe p-1">
+                                    <input type="email"
+                                           name="email"
+                                           placeholder="email"
+                                           class="form-control form-control-sm"
+                                           id="emailField"
+                                           emailfeedbackArea/>
+                                </div>
+                                <div class="emailfeedbackArea invalid-feedback"
+                                     style="display: none; text-align:center"></div>
+                                <div class="form-groupe p-1">
+                                    <input type="password"
+                                           name="password"
+                                           placeholder="password"
+                                           class="form-control form-control-sm"
+                                           id="passwordField"/>
+                                    <small class="float-xl-end py-3 showPasswordToggle">SHOW</small>
+                                </div>
+                                <input type="submit"
+                                       value="Register"
+                                       class="btn btn-block btn-primary form-control submit-btn"/>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="invalid-feedback" style="display: none; text-align:center"></div>
-                <p class="text-sm text-success usernameSuccessOutput"></p>
-                <div class="invalid-feedback"></div>
-                <div class="form-groupe p-1">
-                    <input 
-                    type="email" 
-                    name="email"
-                    placeholder="email"
-                    class="form-control form-control-sm"
-                    id="emailField" emailfeedbackArea/>
-
-                </div>
-                <div class="emailfeedbackArea invalid-feedback" style="display: none; text-align:center"></div>
-
-                <div class="form-groupe p-1">
-                    <input 
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    class="form-control form-control-sm"
-                    id="passwordField"
-                    />
-                    <small class="float-xl-end py-3 showPasswordToggle">SHOW</small>
-                </div>
-                
-                <input type="submit" value="Register" class="btn btn-block btn-primary form-control"/>
-            
-            </form>
+            </div>
+            <div class="col-md-4"></div>
         </div>
-        </div>
-        </div>
-    </div>
-
-
-    <div class="col-md-4"></div>
-
-</div>
-
-<script src="{% static 'js/register.js'%}" ></script>
-
-
-{% endblock content %}
-
-
-
-
-
+        <script src="{% static 'js/register.js'%}"></script>
+    {% endblock content %}

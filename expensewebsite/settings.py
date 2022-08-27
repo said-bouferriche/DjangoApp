@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import environ
 import django_heroku
+from django.contrib import messages
 
 #set up our env
 env = environ.Env()
@@ -139,3 +140,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 django_heroku.settings(locals())
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
