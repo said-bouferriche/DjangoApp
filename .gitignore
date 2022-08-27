@@ -1,3 +1,4 @@
 expensewebsite/__pycache__/*
 authentification/__pycache__/*
 expenses/__pycache__/*
+expensewebsite/.env

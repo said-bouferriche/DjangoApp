@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
@@ -6,6 +7,8 @@ from django.contrib.auth.models import User
 import json
 from validate_email import validate_email
 from django.contrib import messages
+from django.core.mail import EmailMessage
+
 # Create your views here.
 
 class RegistrationView(View):
@@ -17,18 +20,34 @@ class RegistrationView(View):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
+        
+        #context variable
+        context={
+            'fieldValues': request.POST
+        }
+        
+        
         #validate informations
         if not User.objects.filter(username=username).exists():
             if not User.objects.filter(email=email).exists():
                 if len(password) < 6:
                     messages.error(request, 'Password Too short')
-                    return render(request, 'authentification/register.html')
+                    return render(request, 'authentification/register.html',context)
                 #create the user account
                 user = User.objects.create_user(username=username,email=email)
                 user.set_password(password)
                 user.save()
+                email_subject = 'Activate your account'
+                email_body =''
+                email = EmailMessage(
+                    email_subject,
+                    email_body,
+                    'saidbouferriche@gmail.com',
+                    [email],
+                    )
+                email.send(fail_silently=True)
                 messages.success(request,'Successfilly registrated')
-        return render(request, 'authentification/register.html')
+        return render(request, 'authentification/register.html',context)
 
     
 class UsernameValidationView(View):
