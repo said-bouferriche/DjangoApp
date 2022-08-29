@@ -3,7 +3,7 @@ from locale import currency
 from django.shortcuts import render
 import os
 import json
-import pdb
+# import pdb
 from django.conf import settings
 from .models import UserPreferences
 from django.contrib import messages
