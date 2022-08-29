@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "expenses"
+    "expenses",
+    "userpreferences",
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,25 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+
+#logging file 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}

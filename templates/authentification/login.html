@@ -1,24 +1,43 @@
 {% extends 'base-auth.html' %}
-
+{% load static %}
 {% block content %}
+    <div class="row" style="margin-top: 8%;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-title">
+                    <h4 style="text-align: center; padding:20px;">Login</h4>
+                    <div class="card-body">
+                            <form action="{% url 'login'%}" method="post">
+                                {% csrf_token %}
 
-<div class="card">
-
-    <div class="card-body">
-
-        <h1>Login</h1>
-
-        
-    </div>
-
-
-</div>
-
-
-
-{% endblock content %}
-
-
-
-
-
+                                {% include 'partials/_messages.html' %}
+                                <div class="form-groupe p-1">
+                                    <input type="text"
+                                           name="username"
+                                           placeholder="username"
+                                           class="form-control"
+                                           id="usernameField"
+                                           value="{{fieldValues.username}}"/>
+                                </div>
+                                <p class="text-sm text-success"></p>
+                                <div class="invalid-feedback"></div>
+                                <div class="form-groupe p-1">
+                                    <input type="password"
+                                           name="password"
+                                           placeholder="password"
+                                           class="form-control form-control-sm"
+                                           id="passwordField"/>
+                                </div>
+                                <input type="submit"
+                                       value="Login"
+                                       class="btn btn-block btn-primary form-control submit-btn"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <script src="{% static 'js/register.js'%}"></script>
+    {% endblock content %}
