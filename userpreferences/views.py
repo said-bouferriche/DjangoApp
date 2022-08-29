@@ -1,5 +1,3 @@
-from genericpath import exists
-from locale import currency
 from django.shortcuts import render
 import os
 import json

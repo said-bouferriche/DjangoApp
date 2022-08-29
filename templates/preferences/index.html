@@ -2,9 +2,12 @@
 
 
 {% block content %}
-{% include 'partials/_messages.html' %}
+
 
 <div class="container m-3">
+    <h5 > Preferred Currency</h5>
+    {% include 'partials/_messages.html' %}
+
     <form action="{% url 'preferences' %}" method="post">
         {% csrf_token %}
     <div class="input-group">
