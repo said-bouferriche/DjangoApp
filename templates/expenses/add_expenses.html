@@ -4,4 +4,66 @@
 {% block content %}
 
 <h1>Add expenses</h1>
+<div class="container mt-4"></div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href=" {% url 'expenses' %} ">Expenses</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add expences</li>
+    </ol>
+</nav>
+
+
+
+  <div class="card">
+  <div class="card-body ">
+    <form action="{% url 'add-expenses' %}" method="post">
+      {% include 'partials/_messages.html' %}
+      {% csrf_token %}
+      <!-- <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+      </div> -->
+
+    <div class="form-group">
+      <label for="">Amount</label>
+      <input type="number" value="{{values.amount}}" name="amount" class="form-control form-control-sm">
+    </div>
+
+    <div class="form-group">
+      <label for="">Description</label>
+      <input type="text" value="{{values.description}}" name="description" class="form-control form-control-sm">
+    </div>
+    
+    <div class="form-group">
+      <label for="">Category</label>    
+      <select name="category" value="{{values.category}}" id="" class="form-control form-control-sm">
+
+        {% for category in categories %}
+            <option name="category"  value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+        {% comment %} <option name="category" value="">1</option>
+        <option name="category" value="">2</option>
+        <option name="category" value="">3</option> {% endcomment %}
+
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="">Date of Expense</label>
+      <input type="date" value="{{values.date_expense}}" name="date_expense" class="form-control form-control-sm">
+    </div>
+    
+
+    <input type="submit" value="submit" class="btn btn-primary m-2" style="float: right;">
+  </form>
+  </div>
+
+  </div>
+
+
+
+
 {% endblock  %}

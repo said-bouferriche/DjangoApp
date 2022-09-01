@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Add expenses</h1>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-10">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href=" {% url 'expenses' %} ">Expenses</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Edit expences</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-md-2">
+        <form action="{% url 'delete-expenses' expense.id %}" method="post">
+          {% include 'partials/_messages.html' %}
+          {% csrf_token %}
+        <input type="submit"
+        value="Delete"
+        class="btn btn-danger m-2"
+        style="float: right;">
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body ">
+        <form action="{% url 'edit-expenses' expense.id %}" method="post">
+          {% include 'partials/_messages.html' %}
+          {% csrf_token %}
+          <!-- <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+</div> -->
+          <div class="form-group">
+            <label for="">Amount</label>
+            <input type="number"
+                   value="{{ values.amount }}"
+                   name="amount"
+                   class="form-control form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="">Description</label>
+            <input type="text"
+                   value="{{ values.description }}"
+                   name="description"
+                   class="form-control form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="">Category</label>
+            <select name="category"
+                    value="{{ values.category }}"
+                    id=""
+                    class="form-control form-control-sm">
+              <option selected name="category" value="{{ values.category }}">
+                {{ values.category }}
+              </option>
+              {% for category in categories %}
+                <option name="category" value="{{ category.name }}">
+                  {{ category.name }}
+                </option>
+              {% endfor %}
+              {% comment %} <option name="category" value="">1</option>
+        <option name="category" value="">2</option>
+              <option name="category" value="">3</option> {% endcomment %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Date of Expense</label>
+            <input type="date"
+                   selected
+                   value="{{ values.date }}"
+                   name="date_expense"
+                   class="form-control form-control-sm">
+          </div>
+          <input type="submit"
+                 value="Save"
+                 class="btn btn-success m-2"
+                 style="float: right;">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock  %}
